@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aceita sair comigo?</title>
+    <!-- Biblioteca de fogos/confetes -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #conteudo {
+            background: #7affbf;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            font-family: sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .gif {
+            width: 200px;
+            max-width: 80%;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        h2 {
+            margin-bottom: 25px;
+            color: #111;
+            white-space: pre-line;
+        }
+
+        .botoes {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            width: 200px;
+            height: 50px;
+        }
+
+        .btn {
+            background: black;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            width: 80px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: top 0.1s ease, left 0.1s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <audio id="musica" loop preload="auto">
+        <source src="musica.mp3" type="audio/mpeg">
+    </audio>
+    <div id="conteudo">
+        <!-- GIF do Bulldog no baloiço -->
+        <img class="gif" src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z0ZjV3eHliNDRtbmlyeHVwbWVvNDBsbXRwbG5sZzR5bnNxdmE0ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Kuw5gir5rTnaw/giphy.gif" alt="Bulldog no baloiço">
+        
+        <h2 id="titulo">Aceita sair comigo?</h2>
+        
+        <div class="botoes" id="container-botoes">
+            <button class="btn" onclick="sim()">SIM</button>
+            <button class="btn" onclick="desvia(this)" onmouseover="desvia(this)">NÃO</button>
+        </div>
+    </div>
+
+    <script>
+        function sim() {
+            // Atualiza a mensagem na tela
+            document.getElementById("titulo").innerText = "Ebaaa! Você aceitou! ❤️🎉\n Sábado, 16h, Padaria Alemã?";
+            
+            // Oculta os botões
+            document.getElementById("container-botoes").style.display = "none";
+
+            // Duração dos fogos de artifício
+            var duration = 4 * 3000;
+            var animationEnd = Date.now() + duration;
+
+            var interval = setInterval(function() {
+                var timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    clearInterval(interval);
+                    // Redireciona para o WhatsApp
+                    location.href = "https://wa.me/5519971343032";
+                    return;
+                }
+
+                var particleCount = 50 * (timeLeft / duration);
+
+                // Disparos alternados nos lados esquerdo e direito da tela
+                confetti({
+                    particleCount: particleCount,
+                    spread: 360,
+                    startVelocity: 30,
+                    origin: { x: Math.random() * 0.4 + 0.1, y: Math.random() - 0.2 }
+                });
+                confetti({
+                    particleCount: particleCount,
+                    spread: 360,
+                    startVelocity: 30,
+                    origin: { x: Math.random() * 0.4 + 0.5, y: Math.random() - 0.2 }
+                });
+            }, 250);
+        }
+
+        function desvia(btn) {
+            btn.style.position = 'fixed';
+            btn.style.top = geraPosicao(5, 85) + "%";
+            btn.style.left = geraPosicao(5, 85) + "%";
+        }
+
+        function geraPosicao(min, max) {
+            return (Math.random() * (max - min) + min);
+        }
+    </script>
+</body>
+
+</html>
