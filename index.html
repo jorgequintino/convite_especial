@@ -73,7 +73,7 @@
 
     <div id="conteudo">
         <!-- GIF do Bulldog no baloiço -->
-        <img class="gif" src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z0ZjV3eHliNDRtbmlyeHVwbWVvNDBsbXRwbG5sZzR5bnNxdmE0ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Kuw5gir5rTnaw/giphy.gif" alt="Bulldog no baloiço">
+        <img class="gif" src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdWdqdDhza2dwaXo5cDl4NXptNjM0ZDNjMnZ0bXNuNzU3ODNlaGkzZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/tmyNSI0gzQ4N7muyzF/giphy.gif" alt="dog waiting">
         
         <h2 id="titulo">Aceita sair comigo?</h2>
         
@@ -104,7 +104,8 @@
         document.addEventListener('touchstart', tocarMusica);
         
         function sim() {
-            // Atualiza a mensagem na tela
+            // Atualiza a mensagem na tela e gif
+            document.querySelector(".gif").src = "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z0ZjV3eHliNDRtbmlyeHVwbWVvNDBsbXRwbG5sZzR5bnNxdmE0ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Kuw5gir5rTnaw/giphy.gif";
             document.getElementById("titulo").innerText = "Ebaaa! Você aceitou! ❤️🎉\n Sábado, 16h, Padaria Alemã?";
             
             // Oculta os botões
@@ -120,7 +121,7 @@
                 if (timeLeft <= 0) {
                     clearInterval(interval);
                     // Redireciona para o WhatsApp
-                    location.href = "https://wa.me/551999999999?text=SIMMMMM, EU ACEITO SAIR COM VC! ❤️🎉";
+                    location.href = "https://wa.me/5519971343032?text=SIMMMMM, EU ACEITO SAIR COM VC! ❤️🎉";
                     return;
                 }
 
