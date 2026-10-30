@@ -69,10 +69,8 @@
 </head>
 
 <body>
-    <audio id="musica" loop preload="auto">
-<!-- Correto -->
-        <audio controls src="./musica.mp3"></audio>
-    </audio>
+    <audio id="musica" src="./musica.mp3" loop preload="auto"></audio>
+
     <div id="conteudo">
         <!-- GIF do Bulldog no baloiço -->
         <img class="gif" src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z0ZjV3eHliNDRtbmlyeHVwbWVvNDBsbXRwbG5sZzR5bnNxdmE0ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Kuw5gir5rTnaw/giphy.gif" alt="Bulldog no baloiço">
@@ -86,6 +84,25 @@
     </div>
 
     <script>
+        // Seleciona o elemento de áudio
+        var musica = document.getElementById("musica");
+
+        // Função para iniciar a música na primeira interação
+        function tocarMusica() {
+            musica.play().then(() => {
+                // Se a música tocar com sucesso, removemos os "escutadores" de evento
+                // para que não tente iniciar a música novamente a cada clique
+                document.removeEventListener('click', tocarMusica);
+                document.removeEventListener('touchstart', tocarMusica);
+            }).catch((erro) => {
+                console.log("Autoplay bloqueado pelo navegador até a interação.");
+            });
+        }
+
+        // Fica aguardando o primeiro clique ou toque na tela inteira
+        document.addEventListener('click', tocarMusica);
+        document.addEventListener('touchstart', tocarMusica);
+        
         function sim() {
             // Atualiza a mensagem na tela
             document.getElementById("titulo").innerText = "Ebaaa! Você aceitou! ❤️🎉\n Sábado, 16h, Padaria Alemã?";
@@ -103,7 +120,7 @@
                 if (timeLeft <= 0) {
                     clearInterval(interval);
                     // Redireciona para o WhatsApp
-                    location.href = "https://wa.me/5519971343032";
+                    location.href = "https://wa.me/551999999999?text=[SIMMMMM, EU TOPO SAIR COM VC! ❤️🎉]";
                     return;
                 }
 
